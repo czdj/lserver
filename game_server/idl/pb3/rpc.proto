@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "server.proto";
+import "client.proto";
+import "auto_s2c.proto";
+
+
+message ServerHello
+{
+	 ServerInfo info = 1;
+	 repeated string mss = 2;
+}
+
+message GamerNotify
+{
+    int32 id = 1;
+    S2C s2c = 2;
+}
+
+message RPC
+{
+    int32 id = 2000;
+	ServerHello serverHello = 2001;
+    GamerNotify gamerNotify = 2002;
+
+	GamerFriendChatC2S rxcpTestC2S = 1;
+	GamerFriendChatS2C rxpcTestS2C = 2;
+
+	GamerClubRequestC2S gamerClubRequestC2S = 3;
+	GamerClubRequestS2C gamerClubRequestS2C = 4;
+}

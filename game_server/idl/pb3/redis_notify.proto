@@ -1,0 +1,38 @@
+syntax = "proto3";
+message RedisNotifyGamerLogin
+{
+	 int32 psid = 1;
+	 int32 gid = 2;
+}
+
+message RedisNotifyGamerLogout
+{
+	 int32 psid = 1;
+	 int32 gid = 2;
+}
+
+
+message RedisNotifyNewLogicArea
+{
+	 int32 id = 1;
+}
+
+message RedisNotifyNewGamer
+{
+	 int32 id = 1;
+}
+
+message RedisNotifyGamerUpdate
+{
+	 int32 psid = 1;
+	 int32 gid = 2;
+}
+
+message RedisNotify
+{
+	 RedisNotifyGamerLogin gamerLogin = 1;
+	 RedisNotifyGamerLogout gamerLogout = 2;
+	 RedisNotifyNewLogicArea newLogicArea = 3;
+	 RedisNotifyNewGamer newGamer = 4;
+	 RedisNotifyGamerUpdate gamerUpdate = 5;
+}

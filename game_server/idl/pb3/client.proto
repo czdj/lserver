@@ -1,0 +1,440 @@
+syntax = "proto3";
+import "common.proto";
+//玩家登陆
+message GamerLoginC2S
+{
+	 int32  id      = 1;//玩家id
+	 string session = 2;//快速重连session，正常登陆不用填
+}
+
+//玩家登陆
+message GamerLoginS2C
+{
+	 int32 error = 1;
+	 GamerMain main = 2;             //玩家主信息
+}
+
+message GamerLoginGetDataC2S
+{
+	 int32 id = 1;				//玩家id
+}
+
+message GamerLoginGetDataS2C
+{
+	 int32 error = 1;
+	 ServerTime time = 2;  //服务器当前时间
+	 WXInfo wxInfo = 3;
+}
+
+// 服务器时间
+message ServerTimeC2S
+{
+   int32 id = 1;
+}
+
+// 服务器时间
+message ServerTimeS2C
+{
+	 int32 error = 1;
+	 ServerTime time = 2;  //服务器当前时间
+}
+
+//好友聊天
+message GamerFriendChatC2S
+{
+	 int32 id = 1;	//个人id
+     int32 toId = 2;   //接收好友id
+     string msg = 3;  //聊天内容
+}
+
+//好友聊天
+message GamerFriendChatS2C
+{
+	 int32 error = 1;
+	 int32 id = 2;	//个人id
+}
+
+//好友聊天
+message GamerClubRequestC2S
+{
+	 int32 id = 1;	//个人id
+     int32 clubId = 2;   //接收好友id
+     string msg = 3;  //聊天内容
+}
+
+//好友聊天
+message GamerClubRequestS2C
+{
+    int32 error = 1;
+	int32 id = 2;	//个人id
+    bool ok = 3;
+}
+
+message GamerNotifyNewChatS2C
+{
+    int32 from     = 1;  //玩家id
+    string msg = 2;
+}
+
+
+message GamerGetQues1C2S
+{
+	 int32 id = 1;	//个人id
+	 bool change = 2;//是否换题目
+}
+
+message GamerGetQues1S2C
+{
+    int32 error = 1;
+	repeated Poet poets = 2;
+	repeated string fakes = 3;
+	int32 oddEven = 4;
+	int64 score = 5;
+	int32 score32 = 6;
+    int32 ques1Level = 7;
+	int32 tipsNum = 8;
+    int32 answersNum = 9;
+    int32 money = 10;
+}
+
+message GamerGetQues2C2S
+{
+	 int32 id = 1;	//个人id
+	 bool change = 2;//是否换题目
+}
+
+message GamerGetQues2S2C
+{
+    int32 error = 1;
+	repeated Poet poets = 2;
+	repeated string fakes = 3;
+	int64 score = 4;
+	int32 score32 = 5;
+    int32 ques2Level = 6;
+    int32 tipsNum = 7;
+    int32 answersNum = 8;
+    int32 money = 9;
+}
+
+message GamerGetQues3C2S
+{
+	 int32 id = 1;	//个人id
+	 bool change = 2;//是否换题目
+}
+
+message GamerGetQues3S2C
+{
+    int32 error = 1;
+    repeated Poet poets = 2;
+    repeated string fakes = 3;
+    int64 score = 4;
+    int32 score32 = 5;
+    int32 ques3Level = 6;
+    int32 tipsNum = 7;
+    int32 answersNum = 8;
+    int32 oddEven = 9;
+    int32 money = 10;
+
+}
+
+message GamerGetQues4C2S
+{
+	 int32 id = 1;	//个人id
+	 bool newGame = 2;//是否换题目
+}
+
+message GamerGetQues4S2C
+{
+    int32 error = 1;
+    int32 type = 2;
+    repeated Poet poets = 3;
+    repeated string fakes = 4;
+    int32 oddEven = 5;
+    int64 ques4Level = 6;
+    int32 ques4Level32 = 7;
+    int32 tipsNum = 8;
+    int32 money = 9;
+}
+
+message GamerAnswerQues1C2S
+{
+	 int32 id = 1;	//个人id
+	 repeated string keys = 2;
+	 int32 tipsNum = 3;
+     int32 answersNum = 4;
+}
+
+message GamerAnswerQues1S2C
+{
+    int32 error = 1;
+    int64 newScore = 2;//现在积分多少
+    int32 newScore32 = 3;
+    int64 addScore = 4;//增加的积分是多少
+    int32 addScore32 = 5;
+    int32 ques1Level = 6;//当前关卡
+    int32 addMoney = 7;
+    int32 newMoney = 8;
+}
+
+message GamerAnswerQues2C2S
+{
+	 int32 id = 1;	//个人id
+	 repeated string keys = 2;
+	 int32 tipsNum = 3;
+     int32 answersNum = 4;
+}
+
+message GamerAnswerQues2S2C
+{
+    int32 error = 1;
+    int64 newScore = 2;//现在积分多少
+    int32 newScore32 = 3;
+    int64 addScore = 4;//增加的积分是多少
+    int32 addScore32 = 5;
+    int32 ques2Level = 6;//当前关卡
+    int32 addMoney = 7;
+    int32 newMoney = 8;
+}
+
+message GamerAnswerQues3C2S
+{
+	 int32 id = 1;	//个人id
+	 repeated string keys = 2;
+	 int32 tipsNum = 3;
+     int32 answersNum = 4;
+}
+
+message GamerAnswerQues3S2C
+{
+    int32 error = 1;
+    int64 newScore = 2;//现在积分多少
+    int32 newScore32 = 3;
+    int64 addScore = 4;//增加的积分是多少
+    int32 addScore32 = 5;
+    int32 ques3Level = 6;//当前关卡
+    int32 addMoney = 7;
+    int32 newMoney = 8;
+}
+
+message GamerAnswerQues4C2S
+{
+	 int32 id = 1;	//个人id
+	 int32 type = 2;
+	 repeated string keys = 3;
+	 int32 tipsNum = 4;
+}
+
+message GamerAnswerQues4S2C
+{
+    int32 error = 1;
+    int64 newScore = 2;//现在积分多少
+    int32 newScore32 = 3;
+    int64 addScore = 4;//增加的积分是多少
+    int32 addScore32 = 5;
+    int64 ques4Level = 6;//当前关卡
+    int32 ques4Level32 = 7;
+    int32 addMoney = 8;
+    int32 newMoney = 9;
+}
+
+message GamerRestartQues1C2S
+{
+	 int32 id = 1;	//个人id
+	 int32 type = 2; //0表示看视频后开始下一关，1表示不看视频关树减一重新开始
+}
+
+message GamerRestartQues1S2C
+{
+    int32 error = 1;
+}
+
+message GamerRestartQues2C2S
+{
+	 int32 id = 1;	//个人id
+	 int32 type = 2; //0表示看视频后开始下一关，1表示不看视频关树减一重新开始
+}
+
+message GamerRestartQues2S2C
+{
+    int32 error = 1;
+}
+
+message GamerRestartQues3C2S
+{
+	 int32 id = 1;	//个人id
+	 int32 type = 2; //0表示看视频后开始下一关，1表示不看视频关树减一重新开始
+}
+
+message GamerRestartQues3S2C
+{
+    int32 error = 1;
+}
+
+message GamerLeaveCardC2S
+{
+	 int32 id = 1;	//个人id
+	 int32 quesType = 2; //错误题型,1,2,3,
+	 int32 tipsNum = 3;
+     int32 answersNum = 4;
+}
+
+message GamerLeaveCardS2C
+{
+    int32 error = 1;
+}
+
+message GamerReportErrorC2S
+{
+	 int32 id = 1;	//个人id
+	 int32 errType = 2; //错误类型
+	 int32 quesType = 3; //错误题型
+	 repeated Poet poets = 4;
+     repeated string fakes = 5;
+     int32 oddEven = 6;
+}
+
+message GamerReportErrorS2C
+{
+    int32 error = 1;
+}
+
+message GamerServerRankListC2S
+{
+	 int32 id = 1;	//个人id
+}
+
+message GamerServerRankInfo
+{
+    int32 id = 1;	//个人id
+    string name =2; //名字
+    string title = 3; //段位称号
+    int32 rank = 4;//排名
+    int64 level = 5;//关卡数
+    string avatarUrl = 6;//头像
+}
+
+message GamerServerRankListS2C
+{
+    int32 error = 1;
+    repeated GamerServerRankInfo gamerInfo = 2;
+    int32 seasonNum = 3;//赛季
+}
+
+message GamerUploadPlayerInfoC2S
+{
+    int32 id = 1;	//个人id
+    string avatarUrl = 2;
+    string city = 3;
+    int32 gender = 4;
+    string openId = 5;
+    string language = 6;
+    string nickName = 7;
+    string province = 8;
+    string unionId = 9;
+    string country = 10;
+    string sessionId = 11;
+    string sign = 12;
+}
+
+message GamerUploadPlayerInfoS2C
+{
+    int32 error = 1;
+}
+
+message GamerGetNewGamerGuideFlagC2S
+{
+	 int32 id = 1;	//个人id
+}
+
+message GamerGetNewGamerGuideFlagS2C
+{
+    int32 error = 1;
+    int32 newGamerGuideFlag = 2;
+}
+
+message GamerSetNewGamerGuideFlagC2S
+{
+	 int32 id = 1;	//个人id
+	 int32 newGamerGuideFlag = 2;
+}
+
+message GamerSetNewGamerGuideFlagS2C
+{
+    int32 error = 1;
+}
+
+message GamerGetTipsC2S
+{
+	 int32 id = 1;	//个人id
+}
+
+message GamerGetTipsS2C
+{
+    int32 error = 1;
+    int32 costMoney = 2;
+    int32 newMoney = 3;
+}
+
+message GamerGetMoneyByShareC2S
+{
+	 int32 id = 1;	//个人id
+	 int32 adFlag = 2;//是否看广告，0：否 1：是
+}
+
+message GamerGetMoneyByShareS2C
+{
+	 int32 error = 1;
+     int32 addMoney = 2;
+     int32 newMoney = 3;
+     int32 shareNum = 4;
+}
+
+message GamerGetMoneyPer10CardByAdC2S
+{
+	 int32 id = 1;	//个人id
+	 int32 quesType = 2; //题型,1,2,3,
+}
+
+message GamerGetMoneyPer10CardByAdS2C
+{
+	 int32 error = 1;
+     int32 addMoney = 2;
+     int32 newMoney = 3;
+}
+
+message GamerReportFeedbackC2S
+{
+     int32 id = 1;	//个人id
+     string content = 2;//反馈内容
+     string contactInfo = 3;//联系方式
+}
+
+message GamerReportFeedbackS2C
+{
+    int32 error = 1;
+}
+
+message GamerGetMoneyByShareTreasureChestC2S
+{
+    int32 id = 1;	//个人id
+    int32 quesType = 2; //题型,1,2,3,
+}
+
+message GamerGetMoneyByShareTreasureChestS2C
+{
+    int32 error = 1;
+    int32 addMoney = 2;
+    int32 newMoney = 3;
+}
+
+message GamerNearRankListC2S
+{
+    int32 id = 1;	//个人id
+}
+
+message GamerNearRankListS2C
+{
+    int32 error = 1;
+    repeated GamerServerRankInfo gamerInfo = 2;
+    int32 seasonNum = 3;//赛季
+}

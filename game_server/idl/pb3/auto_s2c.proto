@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "client.proto";
+
+message S2C
+{
+	int32 error = 1;
+	string key = 2;
+	GamerLoginS2C gamerLoginS2C = 3;
+	GamerLoginGetDataS2C gamerLoginGetDataS2C = 4;
+	ServerTimeS2C serverTimeS2C = 5;
+	GamerFriendChatS2C gamerFriendChatS2C = 6;
+	GamerClubRequestS2C gamerClubRequestS2C = 7;
+	GamerNotifyNewChatS2C gamerNotifyNewChatS2C = 8;
+	GamerGetQues1S2C gamerGetQues1S2C = 9;
+	GamerGetQues2S2C gamerGetQues2S2C = 10;
+	GamerGetQues3S2C gamerGetQues3S2C = 11;
+	GamerGetQues4S2C gamerGetQues4S2C = 12;
+	GamerAnswerQues1S2C gamerAnswerQues1S2C = 13;
+	GamerAnswerQues2S2C gamerAnswerQues2S2C = 14;
+	GamerAnswerQues3S2C gamerAnswerQues3S2C = 15;
+	GamerAnswerQues4S2C gamerAnswerQues4S2C = 16;
+	GamerRestartQues1S2C gamerRestartQues1S2C = 17;
+	GamerRestartQues2S2C gamerRestartQues2S2C = 18;
+	GamerRestartQues3S2C gamerRestartQues3S2C = 19;
+	GamerLeaveCardS2C gamerLeaveCardS2C = 20;
+	GamerReportErrorS2C gamerReportErrorS2C = 21;
+	GamerServerRankListS2C gamerServerRankListS2C = 22;
+	GamerUploadPlayerInfoS2C gamerUploadPlayerInfoS2C = 23;
+	GamerGetNewGamerGuideFlagS2C gamerGetNewGamerGuideFlagS2C = 24;
+	GamerSetNewGamerGuideFlagS2C gamerSetNewGamerGuideFlagS2C = 25;
+	GamerGetTipsS2C gamerGetTipsS2C = 26;
+	GamerGetMoneyByShareS2C gamerGetMoneyByShareS2C = 27;
+	GamerGetMoneyPer10CardByAdS2C gamerGetMoneyPer10CardByAdS2C = 28;
+	GamerReportFeedbackS2C gamerReportFeedbackS2C = 29;
+	GamerGetMoneyByShareTreasureChestS2C gamerGetMoneyByShareTreasureChestS2C = 30;
+	GamerNearRankListS2C gamerNearRankListS2C = 31;
+}

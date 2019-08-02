@@ -1,0 +1,149 @@
+syntax = "proto3";
+// 服务器时间
+message ServerTime
+{
+     int64 timestamp = 1;          //服务器时间戳
+     int32 year = 2;               //服务器年份
+     int32 month = 3;              //服务器月份
+     int32 day = 4;                //服务器日期
+     int32 hour = 5;               //服务器小时数
+     int32 minute = 6;             //服务器分钟数
+     int32 second = 7;             //服务器秒数
+     int32 timezone = 8;           //服务器时区
+}
+
+//时间记录
+message TimeRecord
+{
+   	
+   	 int64 lastMail         = 2;  //最后一封邮件时间戳
+   	 int64 lastSign         = 3;  //最后签到时间戳
+   	
+	 int64 lastGetPVPResult = 6; //最后获取pvp战斗结果时间
+	 int64 lastWeekRec = 7;      //每周限定最后更新时间戳
+	 int32 totalTime = 8;        //总的在线时长
+}
+
+//次数记录
+message NumberRecord
+{
+	 int32 elo              = 1;	//pvp elo值
+	 int32 normWin          = 2; 	//普通匹配连胜次数
+	 int32 totalSignIn      = 3;    //玩家本月累计签到次数
+	 int32 weekTotalSign    = 4; 	//gamer week sign number
+	 int32 weekGoldGet      = 5;   //玩家每周限制获取金币已获得数据
+	 int32 weekExpGet       = 6;   //玩家每周限制获取经验已获得数据
+
+}
+
+message WXInfo
+{
+    string avatar_url = 1;
+    string city = 2;
+    int32 gender = 3;
+    string open_id = 4;
+    string language = 5;
+    string nick_name = 6;
+    string province = 7;
+    string union_id = 8;
+    string country = 9;
+    string session_id = 10;
+    string sign = 11;
+}
+
+message ItemConfig
+{
+
+     int32 id = 1;
+     int32 number = 2;
+}
+
+//玩家状态
+enum GamerStatus
+{
+    Non = 0;
+    Offline = 1; //离线
+    Online  = 2; //在线
+    Teaming = 3; //组队中
+    Matching = 4; //匹配中
+    Fighting  = 5; //游戏中
+}
+
+//玩家主信息
+message GamerMain
+{
+     int32       id         = 1;    //玩家id
+	 string		uid		   = 2;	  //玩家uid
+	 int32       lsid       = 3;	//玩家所属逻辑服id
+	 int32       psid       = 4;	//所在物理服id
+	 GamerStatus       state      = 5;	//玩家状态, 仅用作客户端显示使用
+     string      name       = 6;    //玩家姓名
+     int32       level      = 7;	//玩家等级
+	 string      session    = 8;	//快速重连session
+	 int64 		create 	   = 9;  //建立时间
+	 int64 		lastLogin  = 10;  //最后登陆时间
+   	 int64 		lastLogout = 11;  //最后下线时间
+	 int32  	typeId 		= 12;//角色类型
+	 int32      ques1Level  = 13;//第一题目到了多少关了
+	 int32      ques2Level  = 14;//第二题目到了多少关了
+	 int32      ques3Level  = 15;//第三题目到了多少关了
+	 int64      ques4Level  = 16;//第四题目到了多少关了
+	 int64      ques4MaxLevel  = 17;//第四题达到的最大关数
+	 int64      quesScore = 18;//积分
+	 int32      ques1TipsNum = 19;// 题型一提示次数
+	 int32      ques2TipsNum = 20;// 题型二提示次数
+	 int32      ques3TipsNum = 21;// 题型三提示次数
+	 int32      ques4TipsNum = 22;// 题型四提示次数
+	 int32      ques1AnswersNum = 23; // 题型一答题次数
+	 int32      ques2AnswersNum = 24; // 题型二答题次数
+	 int32      ques3AnswersNum = 25; // 题型三答题次数
+	 int32      ques4AnswersNum = 26; // 题型四答题次数
+	 string     serverTitle     = 27; //全服段位称号
+	 int32      quesScore32 = 28;//积分
+	 int32      newGamerGuideFlag = 29;//新手引导标志
+	 int32      money = 30;//金币
+	 int32      shareNum = 31;//分享得金币次数
+	 int64 		 lastUpdateShareNum  = 32;  //最后更新分享次数时间戳
+     int32      ques1ContinuousRightNum = 33;//题型一连续答对次数
+     int32      ques2ContinuousRightNum = 34;//题型二连续答对次数
+     int32      ques3ContinuousRightNum = 35;//题型三连续答对次数
+     string     feedbackContent = 36;//反馈内容
+     string     contactInfo = 37;//联系方式
+     int32      seasonNum = 38;//赛季
+}
+
+message GamerMini
+{
+	 int32 id     = 1;  //玩家id
+     string name  = 2;  //玩家姓名
+     int32 level  = 3;	//玩家等级
+	 int32 lsid   = 4;	//玩家服务器
+	 int32 icon   = 5;  //头像
+     int32 iFrame = 6;  //头像框
+}
+
+message GamerFriend
+{
+    int32 id = 1;
+}
+message Vec2
+{
+    int32 x = 1;
+    int32 y = 2;
+}
+message Poet
+{
+    repeated string key = 1;
+    string content = 2;
+    string auth = 3;
+    string title = 4;
+    Vec2 point = 5;
+    int64 index = 6;
+	repeated Vec2 lines = 7;
+}
+
+message Question
+{
+    repeated Poet potes = 1;
+    int32 level = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+message InnerGamerLogout
+{
+	int32 id = 1;
+}
+
+message Inner
+{
+	InnerGamerLogout gamerLogout = 1;
+}

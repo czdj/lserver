@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "client.proto";
+
+message C2S
+{
+	string key = 1;
+	GamerLoginC2S gamerLoginC2S = 2;
+	GamerLoginGetDataC2S gamerLoginGetDataC2S = 3;
+	ServerTimeC2S serverTimeC2S = 4;
+	GamerFriendChatC2S gamerFriendChatC2S = 5;
+	GamerClubRequestC2S gamerClubRequestC2S = 6;
+	GamerGetQues1C2S gamerGetQues1C2S = 7;
+	GamerGetQues2C2S gamerGetQues2C2S = 8;
+	GamerGetQues3C2S gamerGetQues3C2S = 9;
+	GamerGetQues4C2S gamerGetQues4C2S = 10;
+	GamerAnswerQues1C2S gamerAnswerQues1C2S = 11;
+	GamerAnswerQues2C2S gamerAnswerQues2C2S = 12;
+	GamerAnswerQues3C2S gamerAnswerQues3C2S = 13;
+	GamerAnswerQues4C2S gamerAnswerQues4C2S = 14;
+	GamerRestartQues1C2S gamerRestartQues1C2S = 15;
+	GamerRestartQues2C2S gamerRestartQues2C2S = 16;
+	GamerRestartQues3C2S gamerRestartQues3C2S = 17;
+	GamerLeaveCardC2S gamerLeaveCardC2S = 18;
+	GamerReportErrorC2S gamerReportErrorC2S = 19;
+	GamerServerRankListC2S gamerServerRankListC2S = 20;
+	GamerUploadPlayerInfoC2S gamerUploadPlayerInfoC2S = 21;
+	GamerGetNewGamerGuideFlagC2S gamerGetNewGamerGuideFlagC2S = 22;
+	GamerSetNewGamerGuideFlagC2S gamerSetNewGamerGuideFlagC2S = 23;
+	GamerGetTipsC2S gamerGetTipsC2S = 24;
+	GamerGetMoneyByShareC2S gamerGetMoneyByShareC2S = 25;
+	GamerGetMoneyPer10CardByAdC2S gamerGetMoneyPer10CardByAdC2S = 26;
+	GamerReportFeedbackC2S gamerReportFeedbackC2S = 27;
+	GamerGetMoneyByShareTreasureChestC2S gamerGetMoneyByShareTreasureChestC2S = 28;
+	GamerNearRankListC2S gamerNearRankListC2S = 29;
+}
