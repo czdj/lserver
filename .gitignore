@@ -1,0 +1,11 @@
+cmake-build-debug/*
+src/idl/pb2
+*.pyc
+.idea/*
+*.log
+logs/*
+excel/*
+tools/auto
+tools/.idea/*
+tools/redis/*.aof
+www/*
