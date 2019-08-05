@@ -2,9 +2,9 @@
 
 void Init()
 {
-	/*加载全局配置文件*/
+	/*锟斤拷锟斤拷全锟斤拷锟斤拷锟斤拷锟侥硷拷*/
 
-	/*初始化日志*/
+	/*锟斤拷始锟斤拷锟斤拷志*/
 	//google::InitGoogleLogging("aa");
 	
 }
@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
 	Init();
 
-	/*启动选中的服务*/
+	/*锟斤拷锟斤拷选锟叫的凤拷锟斤拷*/
 
     return 0;
 }

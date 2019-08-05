@@ -1,6 +1,9 @@
 #include <evpp/tcp_server.h>
 #include <evpp/buffer.h>
 #include <evpp/tcp_conn.h>
+#include "evpp/logging.h"
+#include "evpp/future/Future.h"
+#include "evpp/util/ThreadPool.h"
 
 int main(int argc, char* argv[]) {
     std::string addr = "0.0.0.0:9099";
