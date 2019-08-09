@@ -19,7 +19,7 @@ include_directories(3rd)
 
 
 if (WINDOWS)
-    SET(DEPENDENT_LIBRARIES )
+    SET(DEPENDENT_LIBRARIES hiredis)
     include_directories(3rd/lib/windows/include)
     if (CMAKE_BUILD_TYPE STREQUAL Debug)
         message(STATUS  "debug model")
@@ -42,8 +42,9 @@ elseif(LINUX)
 endif()
 
 add_subdirectory(3rd/evpp)
+add_subdirectory(util)
 
-add_executable(lserver main.cpp)
+add_executable(lserver main.cpp util/redis/RedisClient.cpp util/redis/RedisClient.h util/redis/RedisReply.cpp util/redis/RedisReply.h)
 target_link_libraries(lserver  ${DEPENDENT_LIBRARIES} evpp_static)
 
 #编译后处理

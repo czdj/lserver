@@ -354,4 +354,12 @@ bool EventLoop::IsPendingQueueEmpty() {
 #endif
 }
 
+void EventLoop::Schedule(Functor functor ){
+    RunInLoop(functor);
+}
+
+void EventLoop::ScheduleLater(std::chrono::milliseconds , std::function<void ()> ){
+
+}
+
 }

@@ -11,6 +11,7 @@
 #include "evpp/any.h"
 #include "evpp/invoke_timer.h"
 #include "evpp/server_status.h"
+#include "evpp/future/Scheduler.h"
 
 #ifdef H_HAVE_BOOST
 #include <boost/lockfree/queue.hpp>
@@ -33,7 +34,7 @@ namespace evpp {
 // This class is a wrapper of event_base but not only a wrapper.
 // It provides a simple way to run a IO Event driving loop.
 // One thread one loop.
-class EVPP_EXPORT EventLoop : public ServerStatus {
+class EVPP_EXPORT EventLoop : public ServerStatus,public Scheduler {
 public:
     typedef std::function<void()> Functor;
 public:
@@ -74,6 +75,12 @@ public:
 
     void RunInLoop(Functor&& handler);
     void QueueInLoop(Functor&& handler);
+
+    ///@brief Internal use for future
+    ///
+    /// thread-safe
+    void ScheduleLater(std::chrono::milliseconds , std::function<void ()> ) override;
+    void Schedule(std::function<void ()> ) override;
 
     // Getter and Setter
 public:
