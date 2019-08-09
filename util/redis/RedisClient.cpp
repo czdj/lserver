@@ -26,14 +26,25 @@ void RedisClient::AsyncConnect(std::string serverIp, int serverPort)
     redisLibeventAttach(redisAsyncContext_,this->loop_->event_base());
     redisAsyncSetConnectCallback(redisAsyncContext_,_ConnectCallback);
     redisAsyncSetDisconnectCallback(redisAsyncContext_,_DisconnectCallback);
-//    redisAsyncCommand(c, NULL, NULL, "SET key %b", argv[argc-1], strlen(argv[argc-1]));
-//    redisAsyncCommand(c, getCallback, (char*)"end-1", "GET key");
 }
 
-static void MessageCallback(redisAsyncContext *c, void *r, void *privdata)
+//连接异常断开，hiredis会在连接断开时调用所有未返回的回调，防止privdata资源泄露
+void RedisClient::OnMessageCallback(redisAsyncContext *c, void *reply, void *privdata)
 {
-    RedisClient* redisClient = (RedisClient*)privdata;
-    redisClient->OnMessageCallback(c,r,privdata);
+    LOG_INFO<<"OnMessageCallback:"<<std::this_thread::get_id();
+
+//    redisReply* reply = (redisReply*)r;
+//    if (reply == NULL) {
+//        if (c->errstr) {
+//            LOG_ERROR<<"redis return error: "<<c->errstr;
+//        }
+//        return;
+//    }
+
+    RedisCommandPackage *cmdPackage = (RedisCommandPackage *) privdata;
+    RedisRawReply rawReply(reply);
+    cmdPackage->invoke(rawReply);
+    delete cmdPackage;
 }
 
 template<typename RedisType,
@@ -62,25 +73,7 @@ F RedisClient::_ExctueRedisCmd(const std::string &cmd) {
 
 void RedisClient::_ExecuteAsyncCmd(const std::string &cmd, CallBackType &&cb) {
     auto cmdPackage = new RedisCommandPackage(cmd,cb);
-    redisAsyncCommand(redisAsyncContext_,::MessageCallback,cmdPackage, cmdPackage->getCmd().c_str());
-}
-
-void RedisClient::OnMessageCallback(redisAsyncContext *c, void *reply, void *privdata)
-{
-    LOG_INFO<<"OnMessageCallback:"<<std::this_thread::get_id();
-
-//    redisReply* reply = (redisReply*)r;
-//    if (reply == NULL) {
-//        if (c->errstr) {
-//            LOG_ERROR<<"redis return error: "<<c->errstr;
-//        }
-//        return;
-//    }
-/
-    RedisCommandPackage *cmdPackage = (RedisCommandPackage *) privdata;
-    RedisRawReply rawReply(reply);
-    cmdPackage->invoke(rawReply);
-    delete cmdPackage;
+    redisAsyncCommand(redisAsyncContext_,&RedisClient::OnMessageCallback,cmdPackage, cmdPackage->getCmd().c_str());
 }
 
 RedisClient::RedisReplyContentFuture<RedisBoolType>

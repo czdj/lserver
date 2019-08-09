@@ -50,7 +50,7 @@ public:
         messageCallback_ = cb;
     }
 
-    void OnMessageCallback(redisAsyncContext *c, void *r, void *privdata);
+    static void OnMessageCallback(redisAsyncContext *c, void *r, void *privdata);
 
     RedisReplyContentFuture<RedisBoolType>
     set(const std::string &key, const std::string &value);
